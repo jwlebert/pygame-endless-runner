@@ -6,6 +6,10 @@ class Block(pygame.sprite.Sprite):
 
 		self.game = game
 		self.data = data
+		# DATA
+		# "dimensions": (num, num),
+		# "color": RGB,
+		# "init_pos": (num, num)
 
 		self.image = pygame.Surface(self.data["dimensions"])
 		self.image.fill(self.data["color"])
@@ -13,10 +17,10 @@ class Block(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.x, self.rect.y = self.data["init_pos"]
 
-	def draw(self):
+	def draw(self, origin):
 		x_scroll = self.game.x_scroll
 		init_pos = self.data["init_pos"]
-		pos = init_pos[0] - x_scroll, init_pos[1]
+		pos = (init_pos[0] + origin) - x_scroll, init_pos[1]
 
 		self.rect.x, self.rect.y = pos
 

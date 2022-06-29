@@ -6,7 +6,8 @@ settings = {
 	"game_title": "Endless Runner", # ! TEMPLATE: decide on a name for the end product
 	"FPS": 60,
 	"screen_size": (900, 600),
-	"scroll_speed": 1,
+	# "screen_size": (1920, 1080),
+	"scroll_factor": 0.3, # % of screen per second
 }
 
 def main():
