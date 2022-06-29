@@ -1,5 +1,7 @@
 import pygame
-from src.Block import Block
+
+# from src.Block import Block
+from src.Map import Map
 
 WHITE = (255, 255, 255)
 BLACK = (0,   0,   0)
@@ -15,31 +17,17 @@ class Game:
 		self.FPS = self.settings["FPS"]
 
 		# Screen initialization
-		screen_size = self.settings["screen_size"]
+		screen_size = s_x, s_y = self.settings["screen_size"]
 		self.WIN = pygame.display.set_mode(screen_size)
 		game_title = self.settings["game_title"]
 		pygame.display.set_caption(game_title)
 
 		# Side scrolling initialization
+		self.scroll_speed = (s_x * self.settings["scroll_factor"]) / 60
 		self.x_scroll = 0
 
-		self.blocks = [
-			Block(self, {
-				"dimensions": (100, 100),
-				"color": BLACK,
-				"init_pos": (500, 350)
-			}),
-			Block(self, {
-				"dimensions": (200, 100),
-				"color": BLACK,
-				"init_pos": (600, 500)
-			}),
-			Block(self, {
-				"dimensions": (50, 50),
-				"color": BLACK,
-				"init_pos": (800, 200)
-			}),
-		]
+		# Map handler initialization
+		self.map = Map(self)
 
 	def start(self):
 		"""Starts the game."""
@@ -52,9 +40,11 @@ class Game:
 		"""Executes the core gameplay loop. Should be run every tick."""
 		self.handle_events()
 
+		self.map.load_rooms()
+
 		self.draw()
 
-		self.x_scroll += self.settings["scroll_speed"]
+		self.x_scroll += self.scroll_speed
 
 		self.timer.tick(self.FPS)
 
@@ -62,8 +52,7 @@ class Game:
 		"""Draws everything to the screen."""
 		self.WIN.fill(WHITE)
 
-		for block in self.blocks:
-			block.draw()
+		self.map.draw()
 
 		pygame.display.update()
 
