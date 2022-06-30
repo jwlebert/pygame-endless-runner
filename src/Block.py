@@ -8,11 +8,17 @@ class Block(pygame.sprite.Sprite):
 		self.data = data
 		# DATA
 		# "dimensions": (num, num),
-		# "color": RGB,
+		# "color": RGB, OR "texture": "<img>"
 		# "init_pos": (num, num)
 
-		self.image = pygame.Surface(self.data["dimensions"])
-		self.image.fill(self.data["color"])
+		if "color" in self.data:
+			self.image = pygame.Surface(self.data["dimensions"])
+			self.image.fill(self.data["color"])
+		elif "texture" in self.data:
+			path_to_img = f"assets/{self.data['texture']}.png"
+			self.image = pygame.transform.scale(
+				pygame.image.load(path_to_img), self.data["dimensions"]
+			)
 
 		self.rect = self.image.get_rect()
 		self.rect.x, self.rect.y = self.data["init_pos"]
@@ -24,4 +30,10 @@ class Block(pygame.sprite.Sprite):
 
 		self.rect.x, self.rect.y = pos
 
-		pygame.draw.rect(self.game.WIN, self.data["color"], self.rect)
+		if "color" in self.data:
+			pygame.draw.rect(self.game.WIN, self.data["color"], self.rect)
+		elif "texture" in self.data:
+			self.game.WIN.blit(self.image, self.rect)
+
+	# TODO : def tile() ; tile an image over a surface instead of
+	# scaling it; scaling doesn't really work for patterned textures.
