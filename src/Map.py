@@ -89,10 +89,10 @@ class Map:
 	
 	def generate_spacer(self):
 		s_x, s_y = self.game.WIN.get_size()
-		return Room(s_x, [
+		return Room(s_x * (3/12), [
 			Block(self.game, {
-				"dimensions": (s_x, s_y * (1/12)),
-				"color": BLACK,
+				"dimensions": (s_x * (3/12), s_y * (1/12)),
+				"texture": "hazard_thick",
 				"init_pos": (0, s_y * (11/12)),
 			})
 		])
