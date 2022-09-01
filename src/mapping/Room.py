@@ -1,4 +1,3 @@
-from src.Game import Game
 from src.mapping.Block import Coloured_Block, Textured_Block
 
 WHITE = (255, 255, 255)
@@ -27,7 +26,7 @@ class Room:
 class Blueprint:
 	"""An informal interface for creating subclasses capable of generating preset rooms."""
 
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		self.game = game
 
@@ -39,7 +38,7 @@ class Starter_Room_Blueprint(Blueprint):
 	"""
 	An empty space where the player starts.
 	"""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		Blueprint.__init__(self, game)
 	
@@ -58,7 +57,7 @@ class Spacer_Blueprint(Blueprint):
 	An empty space room which serves to seperate the rooms from each other.
 	Every other room should be a spacer room.
 	"""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		Blueprint.__init__(self, game)
 	
@@ -77,7 +76,7 @@ class Basic_Platform_Blueprint(Blueprint):
 	"""
 	A simple room that consists of a floor and a single platform in the middle.
 	"""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		Blueprint.__init__(self, game)
 	
@@ -102,7 +101,7 @@ class Basic_Pit_Blueprint(Blueprint):
 	A simple room that consists of a floor with a pit and a single platform
 	above it.
 	"""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		Blueprint.__init__(self, game)
 	
@@ -131,7 +130,7 @@ class Ascending_Platforms_Blueprint(Blueprint):
 	"""
 	A room with multiple ascending platforms.
 	"""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initializes the blueprint."""
 		Blueprint.__init__(self, game)
 	

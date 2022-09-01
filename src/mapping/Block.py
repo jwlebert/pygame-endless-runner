@@ -1,11 +1,9 @@
 import os
 import pygame
 
-from src.Game import Game
-
 class Block(pygame.sprite.Sprite):
 	"""An informal interface for different types of blocks."""
-	def __init__(self, game: Game):
+	def __init__(self, game):
 		"""Initialize the sprite."""
 		pygame.sprite.Sprite.__init__(self)
 
@@ -17,7 +15,7 @@ class Block(pygame.sprite.Sprite):
 
 class Coloured_Block(Block):
 	"""A block which is textured with a colour."""
-	def __init__(self, game: Game, data):
+	def __init__(self, game, data):
 		"""Initializes the sprite."""
 		Block.__init__(self, game)
 
@@ -45,7 +43,7 @@ class Coloured_Block(Block):
 
 class Textured_Block(Block):
 	"""A block which is textured using a texture image."""
-	def __init__(self, game: Game, data):
+	def __init__(self, game, data):
 		"""Initializes the block."""
 		Block.__init__(self, game)
 
