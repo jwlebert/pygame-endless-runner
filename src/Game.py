@@ -1,7 +1,7 @@
 import pygame
 
 # from src.Block import Block
-from src.Map import Map
+from src.mapping.Map import Map
 
 WHITE = (255, 255, 255)
 BLACK = (0,   0,   0)
@@ -23,7 +23,7 @@ class Game:
 		pygame.display.set_caption(game_title)
 
 		# Side scrolling initialization
-		self.scroll_speed = (s_x * self.settings["scroll_factor"]) / 60
+		self.scroll_speed = (s_x * self.settings["scroll_factor"]) / self.FPS
 		self.x_scroll = 0
 
 		# Map handler initialization
