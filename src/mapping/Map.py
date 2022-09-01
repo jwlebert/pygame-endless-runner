@@ -1,5 +1,6 @@
 import random
 
+from src.Game import Game
 from src.mapping.Block import Block
 from src.mapping.Room import *
 
@@ -9,7 +10,7 @@ BLACK = (0,   0,   0)
 
 class Map:
 	"""Represents the map that the plater traverses."""
-	def __init__(self, game):
+	def __init__(self, game: Game):
 		"""Initializes the map."""
 		self.game = game
 
