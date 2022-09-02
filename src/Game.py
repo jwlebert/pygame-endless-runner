@@ -1,5 +1,6 @@
 import pygame
 
+from src.settings import settings
 # from src.Block import Block
 from src.mapping.Map import Map
 
@@ -8,22 +9,22 @@ BLACK = (0,   0,   0)
 
 class Game:
 	"""Represents the game."""
-	def __init__(self, settings):
+	def __init__(self):
 		"""Initalizes the game."""
-		self.settings = settings
 
 		# FPS Timer
 		self.timer = pygame.time.Clock()
-		self.FPS = self.settings["FPS"]
+		self.FPS = settings.FPS
 
 		# Screen initialization
-		screen_size = s_x, s_y = self.settings["screen_size"]
+		s_x = settings.SCREEN_WIDTH
+		screen_size = settings.SCREEN_DIMENSIONS
 		self.WIN = pygame.display.set_mode(screen_size)
-		game_title = self.settings["game_title"]
+		game_title = settings.TITLE
 		pygame.display.set_caption(game_title)
 
 		# Side scrolling initialization
-		self.scroll_speed = (s_x * self.settings["scroll_factor"]) / self.FPS
+		self.scroll_speed = (s_x * settings.SCROLL_FACTOR) / self.FPS
 		self.x_scroll = 0
 
 		# Map handler initialization
