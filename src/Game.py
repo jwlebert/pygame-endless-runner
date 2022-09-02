@@ -1,7 +1,8 @@
 import pygame
+import sys
 
 from src.settings import settings
-# from src.Block import Block
+from src.Player import Player
 from src.mapping.Map import Map
 
 WHITE = (255, 255, 255)
@@ -30,6 +31,9 @@ class Game:
 		# Map handler initialization
 		self.map = Map(self)
 
+		# Player initialization
+		self.player = Player(self)
+
 	def start(self):
 		"""Starts the game."""
 		self.active = True
@@ -54,6 +58,7 @@ class Game:
 		self.WIN.fill(WHITE)
 
 		self.map.draw()
+		self.player.update()
 
 		pygame.display.update()
 
@@ -62,4 +67,4 @@ class Game:
 		for event in events:
 			if event.type == pygame.QUIT:
 				pygame.quit()
-				exit()
+				sys.exit()
